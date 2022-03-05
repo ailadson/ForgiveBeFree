@@ -3,8 +3,6 @@ import { QuestionCircleOutlined, ExclamationCircleOutlined } from '@ant-design/i
 import { Tooltip, Modal } from 'antd';
 import { getChunk } from '../util';
 
-import "antd/dist/antd.css";
-
 const Home = () => {
   const [chunk, setChunk] = useState(null);
   const [qas, setQAs] = useState([]);
