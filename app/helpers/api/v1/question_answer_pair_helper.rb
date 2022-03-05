@@ -1,11 +1,14 @@
 module Api::V1::QuestionAnswerPairHelper
     def self.ask_question(wom_chunk, question)
         client = ::OpenAI::Client.new(access_token:ENV['OPENAI_ACCESS_TOKEN'])
-        prompt = wom_chunk + "\nQuestion: " + question + "\nAnswer: "
+        prompt = wom_chunk + "\n\nQuestion: " + question + "\n\nAnswer: "
         answer = ''
 
         loop do
-            response = client.completions(engine: "text-davinci-001", parameters: { prompt: prompt, max_tokens: 64 })
+            response = client.completions(
+                engine: "text-davinci-001",
+                parameters: { prompt: prompt, max_tokens: 64, temperature: 1, frequency_penalty: 0.33, presence_penalty: 0.33 }
+            )
 
             if response['error']
                 if response['error']['message'].start_with?('This model\'s maximum context length is 2049 tokens')

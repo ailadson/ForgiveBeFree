@@ -136,11 +136,11 @@ export const getChunk = () => {
     while (tokens < 1600) {
         if (earlier > 0 && (Math.random() > 0.5 || later >= lines.length - 1)) {
             earlier -= 1;
-            chunk = lines[earlier] + '\n' + chunk;
+            chunk = lines[earlier] + ' ' + chunk;
             tokens += lines[earlier].split(' ').length;
         } else if (later < lines.length - 1) {
             later += 1;
-            chunk = chunk + '\n' + lines[later];
+            chunk = chunk + ' ' + lines[later];
             tokens += lines[later].split(' ').length;
         } else {
             break;
