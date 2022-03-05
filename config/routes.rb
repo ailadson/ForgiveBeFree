@@ -1,3 +1,9 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  namespace :api do
+    namespace :v1 do
+      post '/ask_question', to: 'question_answer_pair#create'
+      get '/see_qas', to: 'question_answer_pair#show'
+    end
+  end
+  root 'application#index'
 end

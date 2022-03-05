@@ -1,0 +1,99 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ html, body, .container {
+     margin: 0;
+     padding: 0;
+     height: 100%;
+     background-color: rgba(255, 244, 176, 0.8);
+ }
+
+ .question-input-container {
+    z-index: 3;
+    height: 44px;
+    background: #202124;
+    border: 1px solid #5f6368;
+    border-radius: 24px;
+    margin: 0 auto;
+    width: 638px;
+    max-width: 584px;
+    box-shadow: rgba(127, 0, 255, 0.3) 1px 1px 5px;
+    position: relative;
+    bottom: calc(50% - 22px);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: bottom 1s;
+
+    &.active {
+        bottom: 41px;
+    }
+
+    &.loading {
+        animation: loading 1s infinite;
+    }
+    
+     @keyframes loading {
+        50% {box-shadow: rgba(127, 0, 255, 0.8) 1px 1px 25px;}
+    }
+ }
+
+ .question-input {
+    border: none;
+    background-color: transparent;
+    margin: 0 auto;
+    padding: 0;
+    color: #e8eaed;
+    word-wrap: break-word;
+    outline: none;
+    display: flex;
+    -webkit-tap-highlight-color: transparent;
+    margin-top: 4px;
+    height: 34px;
+    font-size: 16px;
+    width: 94%;
+ }
+
+ .qas-container {
+    margin: 0px 100px;
+    max-height: 80%;
+    overflow: auto;
+    bottom: 123px;
+    min-height: 300px;
+    font-size: 25px;
+    font-family: Georgia, serif;
+    background-color: white;
+    padding: 30px;
+    position: absolute;
+
+    .qa-container {
+        margin: 28px 0px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid black;
+
+        div {
+            margin-bottom: 10px;
+        }
+    }
+ }
+
+ .sidebar {
+    position: absolute;
+    width: 100px;
+    height: 100%;
+    padding-top: 60px;
+    text-align: center;
+ }
