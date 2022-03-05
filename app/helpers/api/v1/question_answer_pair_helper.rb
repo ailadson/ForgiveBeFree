@@ -7,7 +7,7 @@ module Api::V1::QuestionAnswerPairHelper
         loop do
             response = client.completions(
                 engine: "text-davinci-001",
-                parameters: { prompt: prompt, max_tokens: 64, temperature: 1, frequency_penalty: 0.33, presence_penalty: 0.33 }
+                parameters: { prompt: prompt, max_tokens: 64, temperature: 1, frequency_penalty: 0.55, presence_penalty: 1.0 }
             )
 
             if response['error']
