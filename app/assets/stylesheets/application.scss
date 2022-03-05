@@ -70,7 +70,6 @@
  }
 
  .qas-container {
-    margin: 0px 100px;
     max-height: 80%;
     overflow: auto;
     bottom: 123px;
@@ -80,6 +79,9 @@
     background-color: white;
     padding: 30px;
     position: absolute;
+    width: 74%;
+    left: 50%;
+    transform: translateX(-50%);
 
     .qa-container {
         margin: 28px 0px;
