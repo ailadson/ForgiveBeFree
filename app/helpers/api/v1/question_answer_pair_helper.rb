@@ -7,13 +7,20 @@ module Api::V1::QuestionAnswerPairHelper
         loop do
             response = client.completions(
                 engine: "text-davinci-001",
-                parameters: { prompt: prompt, max_tokens: 64, temperature: 1, frequency_penalty: 0.55, presence_penalty: 1.0 }
+                parameters: { prompt: prompt, max_tokens: 64, temperature: 1, frequency_penalty: rand(0.33..1.0), presence_penalty: rand(0.33..1.0) }
             )
 
             if response['error']
                 if response['error']['message'].start_with?('This model\'s maximum context length is 2049 tokens')
-                    wom_words = wom_chunk.split(' ')
-                    wom_chunk = wom_words[200, wom_words.size].join(' ')
+                    positions = wom_chunk.enum_for(:scan, /Question: /).map { Regexp.last_match.begin(0) }
+
+                    if (positions.size > 1)
+                        wom_chunk = wom_chunk[0...positions[0]] + wom_chunk[positions[1]..]
+                    else
+                        wom_words = wom_chunk.split(' ')
+                        wom_chunk = wom_words[200, wom_words.size].join(' ')
+                    end
+
                     prompt = wom_chunk + "\nQuestion: " + question + "\nAnswer: " + answer
                     next
                 end
