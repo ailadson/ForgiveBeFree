@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 const text = `Now, we begin.
 And, indeed, greetings unto you, beloved and holy friends. If I speak in the language of your world, I cannot find those words that can convey to you the Love which I feel for you. I cannot find the words that can convey unto you the Love I feel, that God has for all of us. If I search the languages of your world, I cannot find a concept, a word, an idea, a philosophy, a dogma that can contain, in Truth, the Mystery that is closer to you than your own breath and awaits your discovery.
 If I search throughout all of creation, if I search through the many mansions that exist within the domains of my Father’s Creation — and that Creation is infinite — try as I might, I cannot discover anything that can truly describe you. I cannot find that which is of greater value than you. In Truth, I cannot discover anything that speaks more eloquently of the Love that God is, than your very existence. Therefore, in Truth, I look upon you constantly, and marvel at the Radiance of my Father’s Love.
@@ -149,3 +151,14 @@ export const getChunk = () => {
 
     return chunk;
 }
+
+export const getUserId = () => {
+    let id = localStorage.getItem('userId');
+
+    if (!id) {
+        localStorage.setItem('userId', uuidv4());
+        id = localStorage.getItem('userId');
+    }
+
+    return id;
+};

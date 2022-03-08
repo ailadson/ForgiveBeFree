@@ -6,7 +6,7 @@ import {
   MailOutlined,
 } from '@ant-design/icons';
 import { Tooltip, Modal } from 'antd';
-import { getChunk } from '../util';
+import { getChunk, getUserId } from '../util';
 
 const Home = () => {
   const [chunk, setChunk] = useState(null);
@@ -19,6 +19,7 @@ const Home = () => {
   const [contactModalVisible, setContactModalVisible] = useState(false);
 
   const qaRef = useRef(null)
+  const userId = getUserId();
 
   useEffect(() => {
     if (chunk === null) {
@@ -32,6 +33,7 @@ const Home = () => {
     const data = new FormData();
     data.set('question', question);
     data.set('chunk', chunk);
+    data.set('userId', userId);
     const options = {
       method: 'POST',
       body: data,
@@ -53,6 +55,15 @@ const Home = () => {
         const chunkAddition = `\nQuestion: ${response.question.trim()}\nAnswer: ${response.answer.trim()}`
         setChunk(chunk + chunkAddition);
         qaRef.current.scrollIntoView({ behavior: 'smooth' });
+
+        if (response.filter && ["1", "2"].includes(response.filter)) {
+          notification.open({
+            message: 'Alert!',
+            description:
+              `This response content has been flagged a potentially ${response.filter === "1" ? 'sensitive' : 'unsafe'} by OpenAi's content filter.`
+          });
+        }
+
       })
       .catch(() => console.log('error'));
   };
@@ -187,6 +198,9 @@ const Home = () => {
         </p>
         <p>
           The AI was able to hold incredibly complex conversations about highly advanced spiritual topics, such as Love, the nature of God, the nature of the soul, forgiveness, desire, angels, demons, etc.
+        </p>
+        <p>
+          I found it to be quite fun and entertaining, and even occasionally illuminating. Try it out for yourself. Approach it with levity, and have fun!
         </p>
       </Modal>
       <Modal
