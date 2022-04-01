@@ -68,7 +68,7 @@ module Api::V1::QuestionAnswerPairHelper
                 parameters: {
                     prompt: prompt,
                     max_tokens: 64,
-                    temperature: 1,
+                    temperature: rand(0.7..1.0),
                     frequency_penalty: rand(0.33..1.0),
                     presence_penalty: rand(0.33..1.0),
                     user: userId,
