@@ -1,5 +1,5 @@
 module Api::V1::QuestionAnswerPairHelper
-    def self.content_filter(answer)
+    def self.content_filter(client, userId, answer)
         response = client.completions(
             engine: "content-filter-alpha",
             parameters: {
@@ -105,7 +105,7 @@ module Api::V1::QuestionAnswerPairHelper
         end
 
         answer
-        filter = self.content_filter(answer)
+        filter = self.content_filter(client, userId, answer)
 
         return { answer: answer, filter: filter }
     end
