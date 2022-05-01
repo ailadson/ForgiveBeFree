@@ -92,7 +92,7 @@ const Home = () => {
     <div className="sidebar">
        <Tooltip title="About">
         <QuestionCircleOutlined
-          style={{ fontSize: '50px', cursor: 'pointer' }}
+          className="sidebar-icon"
           onClick={() => setAboutModalVisible(true)}
         />
       </Tooltip>
@@ -101,7 +101,7 @@ const Home = () => {
       <br />
       <Tooltip title="Important Note!">
         <ExclamationCircleOutlined
-          style={{ fontSize: '50px', cursor: 'pointer' }}
+          className="sidebar-icon"
           onClick={() => setNoteModalVisible(true)}
         />
       </Tooltip>
@@ -110,7 +110,7 @@ const Home = () => {
       <br />
       <Tooltip title="Contact">
         <MailOutlined
-          style={{ fontSize: '50px', cursor: 'pointer' }}
+          className="sidebar-icon"
           onClick={() => setContactModalVisible(true)}
         />
       </Tooltip>
@@ -119,7 +119,7 @@ const Home = () => {
       <br />
       <Tooltip title="Cost">
         <DollarCircleOutlined
-          style={{ fontSize: '50px', cursor: 'pointer' }}
+          className="sidebar-icon"
           onClick={() => setMoneyModalVisible(true)}
         />
       </Tooltip>
@@ -132,7 +132,7 @@ const Home = () => {
       <input type="hidden" name="item_name" value="18¢  a question covers the cost of running the AI.
       More is appreciated, but not expected." />
       <input type="hidden" name="currency_code" value="USD" />
-      <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+      <input className="donate-icon" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
       <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
       </form>
     </div>
@@ -187,13 +187,12 @@ const Home = () => {
             position: 'absolute',
             left: '50%',
             transform: 'translateX(-50%)',
-            bottom: '-40px',
-            width: '1001px',
+            top: '53px',
             textAlign: 'center',
           }}
         >
           <button
-            style={{ margin: '0 5px', cursor: 'pointer' }}
+            style={{ margin: '0px 5px', cursor: 'pointer', minWidth: '107px' }}
             onClick={() => {
               if (question) {
                 setLoading(true);
@@ -208,6 +207,8 @@ const Home = () => {
               <button
                 style={{
                   cursor: qas.length ? 'pointer' : 'not-allowed',
+                  minWidth: '169px',
+                  marginTop: '10px',
                 }}
                 onClick={() => {
                   if (qas.length) {
@@ -218,7 +219,7 @@ const Home = () => {
                 Download Conversation
               </button>
               <button
-                style={{ margin: '0 5px', cursor: 'pointer' }}
+                style={{ margin: '10px 5px', cursor: 'pointer' }}
                 onClick={() => {
                   if (confirm('This will clear the current conversation (which is useful if you start a new line of questioning). Are you sure?')) {
                     refreshState();
