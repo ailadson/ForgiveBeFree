@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import text from 'texts/lesson4';
+import text from 'texts/lesson5';
 
 
 export const getChunk = () => {
